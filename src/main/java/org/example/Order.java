@@ -1,4 +1,3 @@
-package org.example;
 /**
  * Constructs a new Order with the given customer and ID.
  *
@@ -6,28 +5,40 @@ package org.example;
  * @param id the unique identifier for this order
  */
 
+package org.example;
 import java.util.Objects;
 
 public class Order {
     private final Customer customer;
-    private final int id;
+    private static int counterId = 0;
+    private final int id = counterId++;
     private StatusOrder statusOrder;
-    public Order(Customer customer,int id) {
-        this.customer=customer;
-        this.id=id;
-        statusOrder=StatusOrder.NEW;
+    private final Waiter waiter;
+
+    public Order(Customer customer,Waiter waiter) {
+        this.customer = customer;
+        statusOrder = StatusOrder.NEW;
+        this.waiter=waiter;
     }
+
     public StatusOrder getStatusOrder() {
         return statusOrder;
     }
+
     public void setStatusOrder(StatusOrder statusOrder) {
         this.statusOrder = statusOrder;
     }
+
     public int getId() {
         return id;
     }
+
     public Customer getCustomer() {
         return customer;
+}
+
+    public Waiter getWaiter() {
+        return waiter;
     }
     @Override
     public boolean equals(Object o) {
@@ -40,6 +51,7 @@ public class Order {
         if (!Objects.equals(customer, order.customer)) return false;
         return statusOrder == order.statusOrder;
     }
+
     @Override
     public int hashCode() {
         int result = customer != null ? customer.hashCode() : 0;
@@ -54,6 +66,7 @@ public class Order {
                 "customer=" + customer +
                 ", id=" + id +
                 ", statusOrder=" + statusOrder +
+                ", waiter=" + waiter +
                 '}';
     }
 }

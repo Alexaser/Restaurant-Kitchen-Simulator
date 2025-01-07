@@ -8,13 +8,10 @@ public class Main {
         ExecutorService service = Executors.newCachedThreadPool();
 
         Restaurant restaurant = new Restaurant(service, 2, 5);
-        service.execute(restaurant);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        service.shutdown();
 
+//        for(int i=0;i<10;i++){
+            service.execute(restaurant);
+//        }
+//        service.shutdown();
     }
 }
